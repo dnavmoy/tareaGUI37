@@ -136,7 +136,12 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         String usuario = jTextField1.getText();
         char[] pass = jPasswordField1.getPassword();
         //JOptionPane.showMessageDialog(rootPane, "usuario: " + usuario + "\n contraseña: " + pass);
-        comprobarUsuario(usuario, pass);
+        if (usuario != null) {
+            comprobarUsuario(usuario, pass);
+        } else {
+            JOptionPane.showMessageDialog(rootPane,
+                    "Introduce usuario");
+        }
 
     }//GEN-LAST:event_loginActionPerformed
 
@@ -183,18 +188,13 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         HashMap archivo = MetodosFicheros.leerCsv();
         String password = String.valueOf(pass);
         System.out.println(archivo.get(usuario));
-        if (usuario != null) {
 
-            if (archivo.get(usuario).equals(password)) {
-                JOptionPane.showMessageDialog(rootPane,
-                        "usuario correcto");
-            } else {
-                JOptionPane.showMessageDialog(rootPane, 
-                        "usuario o contraseña incorrecta");
-            }
+        if (archivo.get(usuario).equals(password)) {
+            JOptionPane.showMessageDialog(rootPane,
+                    "usuario correcto");
         } else {
-            JOptionPane.showMessageDialog(rootPane, 
-                    "Introduce usuario");
+            JOptionPane.showMessageDialog(rootPane,
+                    "usuario o contraseña incorrecta");
         }
 
     }
