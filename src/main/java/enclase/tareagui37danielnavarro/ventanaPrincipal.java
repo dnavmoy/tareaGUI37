@@ -4,6 +4,10 @@
  */
 package enclase.tareagui37danielnavarro;
 
+import java.util.HashMap;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+
 /**
  *
  * @author daniel
@@ -15,7 +19,7 @@ public class ventanaPrincipal extends javax.swing.JFrame {
      */
     public ventanaPrincipal() {
         initComponents();
-        
+
     }
 
     /**
@@ -48,6 +52,11 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         jLabel2.setText("Contraseña");
 
         login.setText("Login");
+        login.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginActionPerformed(evt);
+            }
+        });
 
         registro.setText("Registro");
         registro.addActionListener(new java.awt.event.ActionListener() {
@@ -110,6 +119,7 @@ public class ventanaPrincipal extends javax.swing.JFrame {
 
     private void registroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registroActionPerformed
         // TODO add your handling code here:
+        DialogoRegistrar dialogo = new DialogoRegistrar(this, true);
     }//GEN-LAST:event_registroActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
@@ -120,6 +130,19 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_salirActionPerformed
+
+    private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
+        // TODO add your handling code here:
+        String usuario = jTextField1.getText();
+        char[] pass = jPasswordField1.getPassword();
+        //JOptionPane.showMessageDialog(rootPane, "usuario: " + usuario + "\n contraseña: " + pass);
+        comprobarUsuario(usuario, pass);
+
+    }//GEN-LAST:event_loginActionPerformed
+
+    protected JTextField gettextfield() {
+        return jTextField1;
+    }
 
     /**
      * @param args the command line arguments
@@ -155,6 +178,27 @@ public class ventanaPrincipal extends javax.swing.JFrame {
             }
         });
     }
+
+    private void comprobarUsuario(String usuario, char[] pass) {
+        HashMap archivo = MetodosFicheros.leerCsv();
+        String password = String.valueOf(pass);
+        System.out.println(archivo.get(usuario));
+        if (usuario != null) {
+
+            if (archivo.get(usuario).equals(password)) {
+                JOptionPane.showMessageDialog(rootPane,
+                        "usuario correcto");
+            } else {
+                JOptionPane.showMessageDialog(rootPane, 
+                        "usuario o contraseña incorrecta");
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, 
+                    "Introduce usuario");
+        }
+
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
