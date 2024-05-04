@@ -135,8 +135,9 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         String usuario = jTextField1.getText();
         char[] pass = jPasswordField1.getPassword();
+
         //JOptionPane.showMessageDialog(rootPane, "usuario: " + usuario + "\n contraseña: " + pass);
-        if (usuario != null) {
+        if (!usuario.isEmpty()) {
             comprobarUsuario(usuario, pass);
         } else {
             JOptionPane.showMessageDialog(rootPane,
@@ -187,14 +188,17 @@ public class ventanaPrincipal extends javax.swing.JFrame {
     private void comprobarUsuario(String usuario, char[] pass) {
         HashMap archivo = MetodosFicheros.leerCsv();
         String password = String.valueOf(pass);
-        System.out.println(archivo.get(usuario));
-
-        if (archivo.get(usuario).equals(password)) {
+        if (archivo.containsKey(usuario)) {
+            if (archivo.get(usuario).equals(password)) {
+                JOptionPane.showMessageDialog(rootPane,
+                        "usuario correcto");
+            } else {
+                JOptionPane.showMessageDialog(rootPane,
+                        "usuario o contraseña incorrecta");
+            }
+        }else{
             JOptionPane.showMessageDialog(rootPane,
-                    "usuario correcto");
-        } else {
-            JOptionPane.showMessageDialog(rootPane,
-                    "usuario o contraseña incorrecta");
+                        "usuario o contraseña incorrecta");
         }
 
     }
