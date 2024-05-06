@@ -120,6 +120,7 @@ public class ventanaPrincipal extends javax.swing.JFrame {
     private void registroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registroActionPerformed
         // TODO add your handling code here:
         DialogoRegistrar dialogo = new DialogoRegistrar(this, true);
+        dialogo.setVisible(true);
     }//GEN-LAST:event_registroActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
@@ -138,14 +139,17 @@ public class ventanaPrincipal extends javax.swing.JFrame {
 
         //JOptionPane.showMessageDialog(rootPane, "usuario: " + usuario + "\n contraseña: " + pass);
         if (!usuario.isEmpty()) {
-            comprobarUsuario(usuario, pass);
+            if(comprobarUsuario(usuario, pass)){
+                DialogoLogin dialogoLogin = new DialogoLogin(this, true);
+            }
         } else {
             JOptionPane.showMessageDialog(rootPane,
                     "Introduce usuario");
         }
 
     }//GEN-LAST:event_loginActionPerformed
-
+    
+    
     protected JTextField gettextfield() {
         return jTextField1;
     }
@@ -185,13 +189,14 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         });
     }
 
-    private void comprobarUsuario(String usuario, char[] pass) {
+    private boolean comprobarUsuario(String usuario, char[] pass) {
         HashMap archivo = MetodosFicheros.leerCsv();
         String password = String.valueOf(pass);
         if (archivo.containsKey(usuario)) {
             if (archivo.get(usuario).equals(password)) {
                 JOptionPane.showMessageDialog(rootPane,
                         "usuario correcto");
+                return true;
             } else {
                 JOptionPane.showMessageDialog(rootPane,
                         "usuario o contraseña incorrecta");
@@ -200,7 +205,7 @@ public class ventanaPrincipal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane,
                         "usuario o contraseña incorrecta");
         }
-
+        return false;
     }
 
 

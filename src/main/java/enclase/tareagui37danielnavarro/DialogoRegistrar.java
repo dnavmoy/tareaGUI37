@@ -18,11 +18,12 @@ public class DialogoRegistrar extends javax.swing.JDialog {
 
     /**
      * Creates new form DialogoRegistrar
+     * @param ventana
+     * @param modal
      */
     public DialogoRegistrar(ventanaPrincipal ventana, boolean modal) {
         super(ventana, modal);
         initComponents();
-        this.setVisible(true);
         padre = ventana;
 
     }
@@ -132,6 +133,13 @@ public class DialogoRegistrar extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+      public void cambiarusuario(String usuario){
+       jTextField1.setText(usuario);
+       jTextField1.setEditable(false);
+       
+       
+    }
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         if (jPasswordField1.echoCharIsSet()) {
