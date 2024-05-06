@@ -14,8 +14,8 @@ import javax.swing.JOptionPane;
  */
 public class DialogoRegistrar extends javax.swing.JDialog {
 
-    
     private ventanaPrincipal padre;
+
     /**
      * Creates new form DialogoRegistrar
      */
@@ -23,9 +23,8 @@ public class DialogoRegistrar extends javax.swing.JDialog {
         super(ventana, modal);
         initComponents();
         this.setVisible(true);
-        padre=ventana;
-        
-        
+        padre = ventana;
+
     }
 
     /**
@@ -135,14 +134,14 @@ public class DialogoRegistrar extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        if (jPasswordField1.echoCharIsSet()){
-            jPasswordField1.setEchoChar((char)0);
-            jPasswordField2.setEchoChar((char)0);
-        }else{
-        jPasswordField2.setEchoChar('*');
-        jPasswordField1.setEchoChar('*');
+        if (jPasswordField1.echoCharIsSet()) {
+            jPasswordField1.setEchoChar((char) 0);
+            jPasswordField2.setEchoChar((char) 0);
+        } else {
+            jPasswordField2.setEchoChar('*');
+            jPasswordField1.setEchoChar('*');
         }
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -159,17 +158,20 @@ public class DialogoRegistrar extends javax.swing.JDialog {
         String c1 = String.valueOf(jPasswordField1.getPassword());
         String c2 = String.valueOf(jPasswordField2.getPassword());
         HashMap mapFichero = leerCsv();
-         
-        if(c1.equals(c2)){
-            if(mapFichero.containsKey(jTextField1.getText())){
-                MetodosFicheros.cambiarUsuario(jTextField1.getText(), c1);
-            }else{
-            MetodosFicheros.addUsuario(jTextField1.getText(), c1);
+
+        if (c1.equals(c2)) {
+            if (MetodosFicheros.politicaPassword(c1)) {
+                if (mapFichero.containsKey(jTextField1.getText())) {
+                    MetodosFicheros.cambiarUsuario(jTextField1.getText(), c1);
+                } else {
+                    MetodosFicheros.addUsuario(jTextField1.getText(), c1);
+                }
             }
-        }else{
+
+        } else {
             JOptionPane.showMessageDialog(rootPane, "las contraseñas no son iguales");
         }
-            
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

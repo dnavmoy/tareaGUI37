@@ -12,8 +12,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -48,9 +46,7 @@ public class MetodosFicheros {
 
     public static void addUsuario(String usuario, String pass) {
         String idFichero = "usuarios.csv";
-//        String tmp;
-//        
-//        HashMap mapFichero =leerCsv();
+
 
         BufferedWriter bw = null;
         FileWriter fw = null;
@@ -59,7 +55,7 @@ public class MetodosFicheros {
             bw = new BufferedWriter(fw);
             bw.newLine();
             bw.write(usuario + ";" + pass);
-            JOptionPane.showMessageDialog(null, "añadido");
+            JOptionPane.showMessageDialog(null, "Usuario añadido");
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         } finally {
@@ -92,9 +88,7 @@ public class MetodosFicheros {
 
             while (it1.hasNext()) {
                 String it1Texto = it1.next().toString();
-                String it2Texto= it2.next().toString();
-                System.out.println("prueba it1: " + it1Texto);
-                
+                String it2Texto = it2.next().toString();
 
                 if (!it1Texto.equals(usuario)) {
                     tmp = it1Texto + ";" + it2Texto;
@@ -118,8 +112,19 @@ public class MetodosFicheros {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-        //addUsuario(usuario, pass);
+        
 
+    }
+    
+    public static boolean politicaPassword(String pass){
+        
+        if (pass.length()<4){
+            JOptionPane.showMessageDialog(null, "contraseña muy corta");
+            return false;
+        }else{
+            return true;
+        }
+        
     }
 
 }
