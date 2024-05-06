@@ -82,23 +82,35 @@ public class MetodosFicheros {
         HashMap mapFichero = leerCsv();
         String idFichero = "usuarios.csv";
         String tmp;
-       
-        File fichero=new File(idFichero);
+
+        File fichero = new File(idFichero);
         fichero.delete();
         try (BufferedWriter flujo = new BufferedWriter(new FileWriter(idFichero))) {
-          
+
             Iterator it1 = mapFichero.keySet().iterator();
             Iterator it2 = mapFichero.values().iterator();
-            
-          
-            while(it1.hasNext()){                              
-                tmp=it1.next()+";"+it2.next();
-                flujo.write(tmp);
-                if(it1.hasNext()){
-                    flujo.newLine();
+
+            while (it1.hasNext()) {
+                String it1Texto = it1.next().toString();
+                String it2Texto= it2.next().toString();
+                System.out.println("prueba it1: " + it1Texto);
+                
+
+                if (!it1Texto.equals(usuario)) {
+                    tmp = it1Texto + ";" + it2Texto;
+                    flujo.write(tmp);
+                    if (it1.hasNext()) {
+                        flujo.newLine();
+                    }
+
+                } else {
+                    tmp = usuario + ";" + pass;
+                    flujo.write(tmp);
+                    if (it1.hasNext()) {
+                        flujo.newLine();
+                    }
                 }
-                
-                
+
             }
 //           
             flujo.flush();
@@ -110,5 +122,4 @@ public class MetodosFicheros {
 
     }
 
-    
 }

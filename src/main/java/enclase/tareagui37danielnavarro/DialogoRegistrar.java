@@ -5,7 +5,6 @@
 package enclase.tareagui37danielnavarro;
 
 import static enclase.tareagui37danielnavarro.MetodosFicheros.leerCsv;
-import java.awt.Color;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
 
@@ -94,18 +93,16 @@ public class DialogoRegistrar extends javax.swing.JDialog {
                         .addComponent(jButton1)
                         .addGap(86, 86, 86)
                         .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
                         .addComponent(jButton3))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(74, 74, 74)
-                        .addComponent(jPasswordField2, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
-                            .addComponent(jLabel1))
-                        .addGap(114, 114, 114)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel3))
+                        .addGap(63, 63, 63)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPasswordField2)
                             .addComponent(jPasswordField1)
                             .addComponent(jTextField1))))
                 .addGap(32, 32, 32))
